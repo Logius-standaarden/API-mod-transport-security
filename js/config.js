@@ -3,15 +3,27 @@ let respecConfig = {
     shortName: "mod-ts",
 	specType: "HR",
 	specStatus: "DEF",
-    publishDate: "2024-03-07",
-    publishVersion: "1.0.1",
-    previousPublishVersion: "1.0.0",
-    previousPublishDate: "2023-12-21",
-    editors: [{
-        name: "Kennisplatform API's",
-        company: "Kennisplatform API's",
-        companyURL: "https://github.com/Geonovum/KP-APIs",
-    }],
+    publishDate: "2024-06-06",
+    publishVersion: "1.0.2",
+    previousPublishVersion: "1.0.1",
+    previousPublishDate: "2024-03-07",
+    editors: [ 
+      { 
+        "company" : "Geonovum",
+        "companyURL" : "https://www.geonovum.nl",
+        "name" : "Frank Terpstra"
+      },
+      { 
+        "company" : "Logius",
+        "companyURL" : "https://www.logius.nl",
+        "name" : "Alexander Green"
+      },
+      { 
+        "company" : "Logius",
+        "companyURL" : "https://www.logius.nl",
+        "name" : "Martin van der Plas"
+      }
+    ],
     authors: [{
         name: "Kennisplatform API's",
         company: "Kennisplatform API's",
