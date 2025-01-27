@@ -9,7 +9,7 @@ In order to meet the complete security objectives, every implementer MUST also a
 Note: security controls for signing and encrypting of application level messages will be part of a separate extension, [Signing and Encryption](https://geonovum.github.io/KP-APIs/API-strategie-modules/encryption/).
 
 ## Transport security
-One should secure all APIs assuming they can be accessed from any location on the internet. Information MUST be exchanged over TLS-based secured connections. No exceptions, so everywhere and always. This is [required by law](https://wetten.overheid.nl/BWBR0048156/2023-07-01). One SHOULD follow [the latest NCSC guidelines for TLS](https://english.ncsc.nl/publications/publications/2021/january/19/it-security-guidelines-for-transport-layer-security-2.1)
+One should secure all APIs assuming they can be accessed from any location on the internet. Information MUST be exchanged over TLS-based secured connections. No exceptions, so everywhere and always. This is [required by law](https://wetten.overheid.nl/BWBR0048156/2023-07-01). One MUST follow [the latest NCSC guidelines for TLS](https://english.ncsc.nl/publications/publications/2021/january/19/it-security-guidelines-for-transport-layer-security-2.1)
 
 <span id="api-11"></span>
 <div class="rule" id="/transport/tls">
@@ -44,7 +44,7 @@ Even while remaining client agnostic, clients can be classified in four major gr
 This section contains elements that apply to the generic classes of clients listed above. Although not every client implementation has a need for all the specifications referenced below, a client agnostic API SHOULD provide these to facilitate any client to implement relevant security controls.
 
 Most specifications referenced in this section are applicable to the first three classes of clients listed above.
-Security considerations for native applications are provided in [OAUth2 for Native Apps]](https://tools.ietf.org/html/rfc8252), much of which can help non-OAuth2 based implementations as well.
+Security considerations for native applications are provided in OAUth2 for Native Apps [[[rfc8252]]], much of which can help non-OAuth2 based implementations as well.
 For browser-based applications a subsection is included with additional details and information.
 System-to-system (sometimes called machine-to-machine) may have a need for the listed specifications as well. Note that different usage patterns may be applicable in contexts with system-to-system clients, see above under Client Authentication.
 
@@ -67,8 +67,6 @@ There are a number of security related headers that can be returned in the HTTP 
 | `X-Frame-Options: DENY`                           | To protect against drag-and-drop style clickjacking attacks.                                           |
 | `Access-Control-Allow-Origin`                     | To relax the 'same origin' policy and allow cross-origin access. See CORS-policy below                 |
 
-Note that strict transport security is not only mandated by this module [but also by law](https://wetten.overheid.nl/BWBR0048156/2023-07-01). 
-
 The headers below are only intended to provide additional security when responses are rendered as HTML. As such, if the API will never return HTML in responses, then these headers may not be necessary. However, if there is any uncertainty about the function of the headers, or the types of information that the API returns (or may return in future), then it is RECOMMENDED to include them as part of a defense-in-depth approach.
 
 | Header                                        | Rationale                                                              |
@@ -77,7 +75,7 @@ The headers below are only intended to provide additional security when response
 | `Feature-Policy: 'none'`                      | Feature policies only affect pages rendered as HTML.                   |
 | `Referrer-Policy: no-referrer`                | Non-HTML responses SHOULD not trigger additional requests.             |
 
-In addition to the above listed HTTP security headers, web- and browser-based applications SHOULD apply Subresource Integrity [SRI](https://www.w3.org/TR/SRI/). When using third-party hosted contents, e.g. using a Content Delivery Network, this is even more relevant. While this is primarily a client implementation concern, it may affect the API when it is not strictly segregated or for example when shared supporting libraries are offered.
+In addition to the above listed HTTP security headers, web- and browser-based applications SHOULD apply Subresource Integrity [[[SRI]]]. When using third-party hosted contents, e.g. using a Content Delivery Network, this is even more relevant. While this is primarily a client implementation concern, it may affect the API when it is not strictly segregated or for example when shared supporting libraries are offered.
 
 **How to test**
 The precense of the mandatory security headers can be tested in an automated way. A test client makes a call to the API root. The response is tested for the precense of mandatory headers.
@@ -123,7 +121,7 @@ Services (potentially) including script code (e.g. JavaScript) in their response
 - Ensure sending intended content type headers in your response matching your body content e.g. `application/json` and not `application/javascript`.
 
 ### HTTP Return Code
-HTTP defines status codes. When designing a REST API, don't just use `200` for success or `404` for error. Always use the semantically appropriate [status code](https://tools.ietf.org/html/rfc7231#section-6) for the response.
+HTTP defines status codes. When designing a REST API, don't just use `200` for success or `404` for error. Always use the semantically appropriate <a href="https://datatracker.ietf.org/doc/html/rfc9110#name-status-codes">status code</a> [[[rfc9110]]] for the response.
 
 ### HTTP header filtering
 Realizations may rely on internal usage of HTTP-Headers. Information for processing requests and responses can be passed between components, that can have security implications.
